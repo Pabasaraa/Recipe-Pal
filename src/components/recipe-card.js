@@ -4,27 +4,30 @@ import styles from '../styles/RecipeCard.module.css'
 import dummyPic from '../assets/recipe.jpg'
 
 const recipeCard = (props) => {
+  const name = props.recipe.name;
+  const description = props.recipe.description || 'Sorry there is no description for this one :('
+  const thumbnailUrl = props.recipe.thumbnail_url || dummyPic
 
-  const shortenDesc = (desc) => {
-    if (desc && desc.length > 200) {
-      return desc.substring(0, 200) + '...'
-    }
-    return desc
+  // Calculate maximum description length based on description length
+  let maxDescriptionLength = 210;
+
+  // Truncate description if necessary
+  let truncatedDescription = description
+  if (description.length > maxDescriptionLength) {
+    truncatedDescription = description.substring(0, maxDescriptionLength) + '...'
   }
-
-  const shortenedDesc = shortenDesc(props.recipe.description)
 
   return (
     <div className={styles.outerContainer}>
         <div className={styles.imgContainer}>
-            <img src={props.recipe.thumbnail_url || dummyPic} alt="recipe" className={styles.tumbnailImg} />
+            <img src={thumbnailUrl} alt="Thumbnail" className={styles.tumbnailImg} />
         </div>
         <div className={styles.descContainer}>
-            <div>
-                <h1>{props.recipe.name}</h1>
-                <p>{shortenedDesc.length > 0 ? shortenedDesc : 'Sorry there is no description for this one :('}</p>
-            </div>
-            <button className={styles.button}>View Recipe</button> 
+          <div>
+              <h1>{name}</h1>
+              <p>{truncatedDescription}</p>
+          </div>
+          <button className={styles.button} style={{ alignSelf: 'flex-end' }}>View Recipe</button> 
         </div>
     </div>
   ) 
