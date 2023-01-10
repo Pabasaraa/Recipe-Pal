@@ -9,7 +9,7 @@ const recipeCard = (props) => {
   const thumbnailUrl = props.recipe.thumbnail_url || dummyPic
 
   // Calculate maximum description length based on description length
-  let maxDescriptionLength = 210;
+  let maxDescriptionLength = 200;
 
   // Truncate description if necessary
   let truncatedDescription = description
@@ -23,8 +23,8 @@ const recipeCard = (props) => {
             <img src={thumbnailUrl} alt="Thumbnail" className={styles.tumbnailImg} />
         </div>
         <div className={styles.descContainer}>
-          <div>
-              <h1>{name}</h1>
+          <div className={styles.ellipsis}>
+              <h3>{name}</h3>
               <p>{truncatedDescription}</p>
           </div>
           <button className={styles.button} style={{ alignSelf: 'flex-end' }}>View Recipe</button> 

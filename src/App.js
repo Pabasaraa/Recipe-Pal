@@ -1,14 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
-import './App.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import styles from './styles/App.module.css';
 
 import AllRecipes from './components/all-recipes.js';
+import Header from './components/header.js';
 
 function App() {
   return (
     <Router>
-      <div className="App">
-      
+      <div className={styles.App}>
+        <Header/>
       </div>
       <Switch>
         <Route path="/recipes">
