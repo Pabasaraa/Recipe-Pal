@@ -1,7 +1,8 @@
-import React from 'react'
-import styles from '../styles/RecipeCard.module.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styles from '../styles/RecipeCard.module.css';
 
-import dummyPic from '../assets/recipe.jpg'
+import dummyPic from '../assets/recipe.jpg';
 
 const recipeCard = (props) => {
   const name = props.recipe.name;
@@ -9,7 +10,7 @@ const recipeCard = (props) => {
   const thumbnailUrl = props.recipe.thumbnail_url || dummyPic
 
   // Calculate maximum description length based on description length
-  let maxDescriptionLength = 200;
+  let maxDescriptionLength = 250;
 
   // Truncate description if necessary
   let truncatedDescription = description
@@ -27,7 +28,7 @@ const recipeCard = (props) => {
               <h3>{name}</h3>
               <p>{truncatedDescription}</p>
           </div>
-          <button className={styles.button} style={{ alignSelf: 'flex-end' }}>View Recipe</button> 
+          <Link to={{ pathname: '/description', state: { recipe: props.recipe } }}><button className={styles.button}>View Recipe</button></Link> 
         </div>
     </div>
   ) 
